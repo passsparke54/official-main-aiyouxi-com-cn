@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://passsparke54.github.io/official-main-aiyouxi-com-cn/sitemap.xml
