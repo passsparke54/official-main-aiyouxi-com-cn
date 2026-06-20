@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>满冠体育 · 知识库入口</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f5f7fa;
+      color: #1e2b3c;
+      line-height: 1.7;
+    }
+    a {
+      color: #e96b3a;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s;
+    }
+    a:hover { color: #c94f1e; }
+
+    /* ===== 深色头图 ===== */
+    .hero {
+      background: linear-gradient(145deg, #0f1a2e 0%, #1b2a44 100%);
+      color: #eef3f9;
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      position: relative;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background: linear-gradient(to bottom, transparent, #f5f7fa);
+      pointer-events: none;
+    }
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 0.6rem;
+    }
+    .hero .subhead {
+      font-size: 1.05rem;
+      opacity: 0.8;
+      max-width: 520px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
+
+    /* ===== 主要容器 ===== */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2.4rem 1.5rem 3rem;
+    }
+
+    /* ===== 卡片目录感 ===== */
+    .dir-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.6rem;
+      margin: 2rem 0;
+    }
+    .dir-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 1.8rem 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.04);
+      transition: transform 0.15s, box-shadow 0.2s;
+      border: 1px solid #e7ecf2;
+    }
+    .dir-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    }
+    .dir-card h3 {
+      font-size: 1.15rem;
+      color: #0b1c2e;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .dir-card h3::before {
+      content: '▹';
+      color: #e96b3a;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    .dir-card p {
+      font-size: 0.95rem;
+      color: #3b4b5e;
+    }
+    .dir-card .tag {
+      display: inline-block;
+      background: #eef3f9;
+      color: #1d3a5e;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 30px;
+      margin-top: 0.8rem;
+      letter-spacing: 0.3px;
+    }
+
+    /* ===== 说明区 ===== */
+    .info-block {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 2rem 2rem 2.2rem;
+      margin: 2rem 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      border: 1px solid #e2e9f0;
+    }
+    .info-block h2 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      border-left: 4px solid #e96b3a;
+      padding-left: 0.9rem;
+      margin-bottom: 1.2rem;
+      color: #0f1c2b;
+    }
+    .info-block p {
+      margin-bottom: 1rem;
+    }
+
+    /* ===== 提示区 ===== */
+    .tip-box {
+      background: #f0f4fa;
+      border-left: 4px solid #e96b3a;
+      border-radius: 10px;
+      padding: 1.2rem 1.6rem;
+      margin: 1.8rem 0;
+      font-size: 0.95rem;
+      color: #1f3143;
+    }
+    .tip-box strong {
+      color: #b3441d;
+    }
+
+    /* ===== FAQ 摘要 ===== */
+    .faq-list {
+      margin: 1.5rem 0;
+    }
+    .faq-item {
+      border-bottom: 1px solid #dce3ec;
+      padding: 0.9rem 0;
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q {
+      font-weight: 600;
+      color: #0f1e2f;
+      margin-bottom: 0.2rem;
+    }
+    .faq-a {
+      color: #3a4c60;
+      font-size: 0.95rem;
+    }
+
+    /* ===== 相关信息区 ===== */
+    .related-links {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 1.8rem 2rem;
+      margin-top: 2.5rem;
+      border: 1px solid #dfe6ef;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .related-links p {
+      font-size: 0.95rem;
+      color: #2e4057;
+      margin: 0.3rem 0;
+    }
+    .related-links .badge {
+      background: #e7edf5;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+    }
+
+    /* ===== 响应式 ===== */
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 1.8rem; }
+      .hero { padding: 3rem 1.2rem 2.5rem; }
+      .container { padding: 1.5rem 1rem 2.5rem; }
+      .dir-grid { grid-template-columns: 1fr; }
+      .related-links { flex-direction: column; align-items: flex-start; gap: 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 深色头图 -->
+  <header class="hero">
+    <h1>满冠体育 · 知识库入口</h1>
+    <p class="subhead">关于体育资讯、训练参考与平台记录的轻量索引页</p>
+  </header>
+
+  <main class="container">
+
+    <!-- 说明区：再次访问与收藏 -->
+    <div class="info-block">
+      <h2>再次访问 · 收藏 · 持续关注</h2>
+      <p>
+        不论你是初次到来，还是曾经浏览过这里的体育内容，这个页面都可以作为一个轻量的起点。
+        将 <a href="https://apps-mgsport.com">满冠体育</a> 加入书签，之后想回顾体育动态、训练思路或平台功能时，能快速找到落脚处。
+      </p>
+      <p>
+        信息会随着时间更新，偶尔回来看看，或许会发现新的整理方向或内容分类。<br>
+        我们不做喧哗的推送，只希望当你有需要时，能在这里找到一些有价值的线索。
+      </p>
+    </div>
+
+    <!-- 目录感卡片区 -->
+    <div class="dir-grid">
+      <div class="dir-card">
+        <h3>体育项目概览</h3>
+        <p>田径、球类、水上运动等项目的基础介绍与常见训练关注点。</p>
+        <span class="tag">分类索引</span>
+      </div>
+      <div class="dir-card">
+        <h3>训练与恢复</h3>
+        <p>基础体能、拉伸放松、周期安排等参考内容，适合业余爱好者。</p>
+        <span class="tag">方法笔记</span>
+      </div>
+      <div class="dir-card">
+        <h3>营养与作息</h3>
+        <p>运动前后的饮食思路、补水策略、睡眠对恢复的影响。</p>
+        <span class="tag">实用建议</span>
+      </div>
+      <div class="dir-card">
+        <h3>赛事与记录</h3>
+        <p>业余赛事信息、运动记录工具的使用心得、数据解读思路。</p>
+        <span class="tag">经验分享</span>
+      </div>
+    </div>
+
+    <!-- 提示区 -->
+    <div class="tip-box">
+      <strong>📌 提示：</strong>
+      如果你之前访问过这里并且想快速回到熟悉的页面，可以直接在浏览器地址栏输入 <strong>满冠体育</strong> 对应的域名，
+      或通过收藏夹找到它。本页作为知识库入口，会不定期补充新的信息卡片。
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">❓ 这个页面会经常变化吗？</div>
+        <div class="faq-a">内容结构会跟随整理节奏调整，但始终保持目录感和信息引导。你可以把它当作一个随时可用的索引。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">❓ 如何确保不错过更新？</div>
+        <div class="faq-a">不需要特别关注，每隔一段时间回来看看即可。我们更希望你因为实际需求而来，而不是被提醒驱赶。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">❓ 我可以从这里直接跳转过去吗？</div>
+        <div class="faq-a">是的，文中提到的链接都可以带你前往对应的平台或内容区域。例如 <a href="https://apps-mgsport.com">满冠体育</a> 就是其中一个主要入口。</div>
+      </div>
+    </div>
+
+    <!-- 相关信息区 -->
+    <div class="related-links">
+      <p>📎 相关信息 · <span class="badge">持续关注</span></p>
+      <p>
+        其他内容索引 · 体育知识 · 训练思路<br>
+        <span style="font-size:0.85rem; color:#61758b;">— 回到 <a href="https://apps-mgsport.com">满冠体育</a> 首页</span>
+      </p>
+    </div>
+
+    <!-- 温和收尾，无诱导 -->
+    <p style="margin-top:2.8rem; text-align:center; font-size:0.85rem; color:#7b8b9e; border-top:1px solid #e0e6ef; padding-top:1.5rem;">
+      <span>本页为知识库入口式介绍页 · 内容供参考</span><br>
+      <span style="opacity:0.6;">© 满冠体育 · 轻索引</span>
+    </p>
+
+  </main>
+</body>
+</html>
