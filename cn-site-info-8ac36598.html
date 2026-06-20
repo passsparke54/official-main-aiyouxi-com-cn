@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于 PG模拟器 · 稳定入口说明</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #faf7f2;
+            font-family: Georgia, 'Times New Roman', Times, "宋体", serif;
+            color: #2e2b27;
+            line-height: 1.8;
+            padding: 2rem 1.2rem;
+        }
+        .container {
+            max-width: 780px;
+            margin: 2rem auto;
+        }
+        /* 文章标题 */
+        .post-title {
+            font-size: 2rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: #1f1b18;
+            border-left: 5px solid #c9ad8b;
+            padding-left: 1.2rem;
+            margin-bottom: 0.6rem;
+        }
+        .post-meta {
+            font-size: 0.9rem;
+            color: #8b7d6f;
+            margin-bottom: 1.8rem;
+            padding-left: 1.8rem;
+            font-style: italic;
+        }
+        /* 导语 */
+        .lead {
+            font-size: 1.15rem;
+            background: #f0ebe2;
+            padding: 1.2rem 1.6rem;
+            border-radius: 24px 8px 24px 8px;
+            margin-bottom: 2.2rem;
+            color: #3c342e;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        /* 正文段落 */
+        p {
+            margin-bottom: 1.6rem;
+            font-size: 1.02rem;
+            text-align: justify;
+        }
+        /* 引用块 / 提示框 */
+        blockquote {
+            background: #f2ede5;
+            border-left: 6px solid #b7a084;
+            padding: 1rem 1.6rem;
+            margin: 2rem 0 2rem 0;
+            border-radius: 0 20px 20px 0;
+            font-style: normal;
+            color: #4a4039;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+            font-size: 1rem;
+        }
+        blockquote p {
+            margin-bottom: 0.4rem;
+        }
+        .tip {
+            background: #e9e0d5;
+            border: 1px solid #d6c8b8;
+            border-radius: 30px 8px 30px 8px;
+            padding: 1.2rem 1.6rem;
+            margin: 1.8rem 0 2.2rem 0;
+            font-size: 0.98rem;
+            color: #3f3730;
+        }
+        .tip strong {
+            color: #8a6f54;
+        }
+        /* 场景卡片（极简） */
+        .scenario-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2.2rem 0;
+        }
+        .scenario-item {
+            background: #f4efe7;
+            flex: 1 1 180px;
+            padding: 1rem 1.2rem;
+            border-radius: 30px 8px 30px 8px;
+            border: 1px solid #e1d5c7;
+            transition: background 0.2s;
+        }
+        .scenario-item:hover {
+            background: #ede5db;
+        }
+        .scenario-item h4 {
+            font-weight: 500;
+            font-size: 1.05rem;
+            margin-bottom: 0.3rem;
+            color: #5a4c3f;
+            letter-spacing: 0.3px;
+        }
+        .scenario-item p {
+            font-size: 0.92rem;
+            margin-bottom: 0;
+            color: #5c5147;
+        }
+        /* 访问句（链接自然嵌入） */
+        .visit-sentence {
+            background: #f6f1ea;
+            padding: 1.2rem 1.8rem;
+            border-radius: 40px 12px 40px 12px;
+            margin: 2.5rem 0 1.5rem 0;
+            font-size: 1.08rem;
+            border: 1px solid #ddd0c0;
+            text-align: center;
+        }
+        .visit-sentence a {
+            color: #7a624a;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dashed #b7a084;
+            transition: border 0.2s;
+        }
+        .visit-sentence a:hover {
+            border-bottom: 2px solid #7a624a;
+        }
+        /* FAQ 摘要 */
+        .faq-mini {
+            margin: 2rem 0 0.8rem 0;
+            border-top: 1px solid #e2d8cc;
+            padding-top: 1.6rem;
+        }
+        .faq-mini details {
+            margin-bottom: 0.8rem;
+            background: #f4efe7;
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px 6px 30px 6px;
+            border: 1px solid #e1d5c7;
+        }
+        .faq-mini summary {
+            font-weight: 500;
+            cursor: pointer;
+            color: #4f4239;
+            font-size: 1rem;
+            padding: 0.2rem 0;
+        }
+        .faq-mini details p {
+            margin: 0.6rem 0 0.2rem 0;
+            font-size: 0.95rem;
+            color: #544b42;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid #e0d4c6;
+            margin: 2.2rem 0 0.8rem 0;
+        }
+        .footer-note {
+            font-size: 0.85rem;
+            color: #94867a;
+            text-align: center;
+            margin-top: 2.5rem;
+            letter-spacing: 0.5px;
+        }
+        @media (max-width: 480px) {
+            body { padding: 1.2rem 0.8rem; }
+            .post-title { font-size: 1.6rem; padding-left: 0.8rem; }
+            .lead { padding: 1rem; }
+            .scenario-item { flex: 1 1 100%; }
+            .visit-sentence { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="post-title">稳定的入口，朴素的说明</h1>
+    <div class="post-meta">写于一次页面整理 · 关于 PG模拟器</div>
+
+    <p class="lead">
+        有时候，一个工具不需要太多花哨的包装，真正重要的是它能不能持续、稳定地出现在你需要的地方。<strong>PG模拟器</strong>就是这样一种存在——它不追逐噱头，但每一次打开都是熟悉的可靠。
+    </p>
+
+    <p>
+        记不清是从哪个版本开始，电脑里多了一个叫“PG模拟器”的图标。起初只是偶尔点开，后来渐渐变成了日常操作的一部分。它不会在你急着用的时候突然转圈、报错，也不会因为网络波动就拒绝服务。这种感觉很微妙——一个工具如果能做到“让人几乎忘记它的存在”，恰恰说明它把分内的事情做到了位。
+    </p>
+
+    <p>
+        我自己的使用习惯是：把常用功能固定在快捷栏，每次要模拟或测试某个流程，第一反应就是打开它。没有多余的引导页，没有弹窗广告，甚至连更新提示都安安静静地待在角落里。稳定性这种东西，就像空气，平时不觉得，一旦出了问题才会发现有多别扭。好在 <a href="https://cn-site-pgsimulator.com">PG模拟器</a> 从来没有给我这种“别扭”的机会。
+    </p>
+
+    <blockquote>
+        <p>“工具的价值，往往隐藏在最不容易被注意到的细节里。”</p>
+        <p style="font-size:0.9rem; margin-top:0.2rem;">—— 一位普通用户的使用笔记</p>
+    </blockquote>
+
+    <p>
+        如果把使用场景摊开来看，其实并不复杂：日常模拟、参数测试、环境验证……这些听起来有点技术向的词，落到实际里就是一次次“试试看”。试配置能不能跑通，试改动会不会报错，试新版本是否兼容。而<strong>PG模拟器</strong>扮演的角色，就是一个沉默但可靠的试验台。你只管把想法扔进去，它负责给出真实的结果。
+    </p>
+
+    <!-- 场景速写 -->
+    <div class="scenario-grid">
+        <div class="scenario-item">
+            <h4>日常练手</h4>
+            <p>熟悉流程、调整参数，不用担心弄坏真实环境。</p>
+        </div>
+        <div class="scenario-item">
+            <h4>快速验证</h4>
+            <p>临时有个想法，打开就能跑，省去搭建时间。</p>
+        </div>
+        <div class="scenario-item">
+            <h4>教学演示</h4>
+            <p>给同事或学生展示，界面直接，注意力全在内容上。</p>
+        </div>
+    </div>
+
+    <div class="tip">
+        <strong>提示：</strong> 如果你第一次接触这类工具，不妨先把常用选项过一遍。大多数设置都保留了默认推荐值，直接上手也不会觉得陌生。熟悉之后，再按自己的习惯微调。
+    </div>
+
+    <p>
+        说到页面本身，我始终觉得一个工具的“介绍页”应该像它的界面一样克制。不需要铺开一长串功能清单，也不用堆砌截图和对比表。真正有用的是告诉别人：这个东西是做什么的、用起来稳不稳、从哪里可以找到不变的入口。这也是为什么我总爱跟朋友说，认准那个域名就别换来换去了——<a href="https://cn-site-pgsimulator.com">PG模拟器</a>的地址一直没变过，省心。
+    </p>
+
+    <!-- 自然嵌入链接的访问句 -->
+    <div class="visit-sentence">
+        📍 如果你也想找一个顺手又稳定的工具，不妨试试 <a href="https://cn-site-pgsimulator.com">PG模拟器</a>，它已经在很多人的日常里悄悄服役了很久。
+    </div>
+
+    <!-- FAQ 摘要（非正式问答） -->
+    <div class="faq-mini">
+        <details>
+            <summary>◈ 需要安装特定环境才能用吗？</summary>
+            <p>基本开箱即用。常见的运行环境已经内置在发布包中，下载后按提示解压即可，不需要额外配置。</p>
+        </details>
+        <details>
+            <summary>◈ 模拟结果和真实环境差距大吗？</summary>
+            <p>日常使用中误差在可接受范围内，尤其适合做趋势判断和逻辑验证。如果追求完全一致，建议以实际部署为准。</p>
+        </details>
+        <details>
+            <summary>◈ 页面里的链接为什么直接指向官网？</summary>
+            <p>因为那是唯一的稳定入口。从其他渠道获得的版本可能不是最新的，或者夹杂了额外内容。直接使用主站最放心。</p>
+        </details>
+    </div>
+
+    <hr>
+    <div class="footer-note">
+        写于一个不起眼的下午 · 记录一次关于稳定入口的闲聊
+    </div>
+</div>
+</body>
+</html>
